@@ -17,7 +17,18 @@ let fakeDuration = 600;
 
 
 // りゅういち
-
+// play.addEventListener('click', ()=>{
+//     play.classList.toggle('aaa')
+// });
+// if (id_play.classList.contains('aaa')) {
+//     // song.play();
+//     video.play();
+//     play.src = "./svg/pause.svg"}
+//   } else {
+//     song.pause();
+//     video.pause();
+//     play.src = "./svg/play.svg";
+//   }
 
 // ひがみの
 
