@@ -17,24 +17,26 @@ let fakeDuration = 600;
 
 
 // りゅういち
-// play.addEventListener('click', ()=>{
-//     play.classList.toggle('aaa')
-// });
-// if (id_play.classList.contains('aaa')) {
-//     // song.play();
-//     video.play();
-//     play.src = "./svg/pause.svg"}
-//   } else {
-//     song.pause();
-//     video.pause();
-//     play.src = "./svg/play.svg";
-//   }
+sounds.forEach(sound => {
+    sound.addEventListener("click", function() {
+      song.src = this.getAttribute("data-sound");
+      video.src = this.getAttribute("data-video");
+      checkPlaying(song);
+    });
+  });
 
 // ひがみの
 
 
 // りゅういち
-
+timeSelect.forEach(option => {
+    option.addEventListener("click", function() {
+      fakeDuration = this.getAttribute("data-time");
+      timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
+        fakeDuration % 60
+      )}`;
+    });
+  });
 
 // ひがみの
 
@@ -57,5 +59,7 @@ song.ontimeupdate=function(){
         video.pause();
     }
 };
+
+
 
 
