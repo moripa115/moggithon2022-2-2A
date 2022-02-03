@@ -14,12 +14,9 @@
     <div class="app">
         <!-- ひがみの -->
         <div class="vid-container">
-            <div class="rain-button">
-                <img src="./svg/rain.svg" alt="rain">
-            </div>
-            <div class="sunset-button">
-                <img src="./svg/beach.svg" alt="beach">
-            </div>
+            <video loop>
+                <source src="./video/rain.mp4"  type="video/mp4">
+              </video>
         </div>
         <!-- しほ -->
         <div class="time-select">
@@ -45,7 +42,9 @@
         </div>
         <!-- ひがみの -->
         <div class="sound-picker">
-
+            <button type="button" data-sound="./sounds/rain.mp3" data-video="./video/rain.mp4"><img src="./svg/rain.svg" alt="rain"></button>
+            <button type="button" data-sound="./sounds/beach.mp3" data-video="./video/beach.mp4"><img src="./svg/beach.svg" alt="beach"></button>
+            <!-- type="button"を足しました -->
         </div>
 
     </div>
