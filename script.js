@@ -1,4 +1,3 @@
-'use strict'
 const song = document.querySelector(".song");
 const play = document.querySelector(".play");
 const replay = document.querySelector(".replay");
@@ -14,51 +13,82 @@ const timeSelect = document.querySelectorAll(".time-select button");
 let fakeDuration = 600;
 
 // しほ
-
+outline.style.strokeDashoffset = outlineLength;
+outline.style.strokeDasharray = outlineLength;
+timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
+  fakeDuration % 60
+)}`;
 
 // りゅういち
 sounds.forEach(sound => {
-    sound.addEventListener("click", function() {
-      song.src = this.getAttribute("data-sound");
-      video.src = this.getAttribute("data-video");
-      checkPlaying(song);
-    });
+  sound.addEventListener("click", function() {
+    song.src = this.getAttribute("data-sound");
+    video.src = this.getAttribute("data-video");
+    checkPlaying(song);
   });
+});
 
 // ひがみの
+play.addEventListener("click", function() {
+  checkPlaying(song);
+});
 
+replay.addEventListener("click", function() {
+    restartSong(song);
+    
+  });
+
+
+const restartSong = song =>{
+    let currentTime = song.currentTime;
+    currentTime= 0;
+    console.log("ciao")
+
+}
 
 // りゅういち
 timeSelect.forEach(option => {
-    option.addEventListener("click", function() {
-      fakeDuration = this.getAttribute("data-time");
-      timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
-        fakeDuration % 60
-      )}`;
-    });
+  option.addEventListener("click", function() {
+    fakeDuration = this.getAttribute("data-time");
+    timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
+      fakeDuration % 60
+    )}`;
   });
+});
 
 // ひがみの
-
+const checkPlaying = song => {
+  if (song.paused) {
+    song.play();
+    video.play();
+    play.src = "./svg/pause.svg";
+  } else {
+    song.pause();
+    video.pause();
+    play.src = "./svg/play.svg";
+  }
+};
 
 
 // ゆうじ
-song.ontimeupdate=function(){
-    let currentTime=song.currentTime;
-    let elapsed=fakeDuration-currentTime;
-    let minutes=Math.floor(elapsed/60);
-    let seconds=Math.floor(elapsed%60);
-    timeDisplay.textContent=`${minutes}:${seconds}`;
-    let progress=outlineLength-(currentTime/fakeDuration)*outlineLength;
-    outline.style.storokeDashoffset=progress;
+song.ontimeupdate = function() {
+  let currentTime = song.currentTime;
+  let elapsed = fakeDuration - currentTime;
+  let seconds = Math.floor(elapsed % 60);
+  let minutes = Math.floor(elapsed / 60);
+  timeDisplay.textContent = `${minutes}:${seconds}`;
+  let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+  outline.style.strokeDashoffset = progress;
 
-    if(currentTime>=fakeDuration){
-        song.pause();
-        song.currentTime=0;
-        play.src="./svg/play.svg";
-        video.pause();
-    }
+  if (currentTime >= fakeDuration) {
+    song.pause();
+    song.currentTime = 0;
+    play.src = "./svg/play.svg";
+    video.pause();
+  }
 };
+
+
 
 
 
